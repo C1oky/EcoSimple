@@ -12,8 +12,11 @@ public class MoneyAPI {
 
     }
 
-    public void setMoney(String player, double coin){
-        config.set(player,coin);
+    public void setMoney(String player, double money){
+        if ( money < 0){
+            money = 0;
+        }
+        config.set(player,money);
         config.save();
     }
 
@@ -26,18 +29,18 @@ public class MoneyAPI {
         }
     }
 
-    public void addMoney(String player, double coin){
-        coin += this.getMoney(player);
-        config.set(player,coin);
+    public void addMoney(String player, double money){
+        money += this.getMoney(player);
+        config.set(player,money);
         config.save();
     }
 
-    public void RemoveMoney(String player, double coin){
-        coin = this.getMoney(player) - coin;
-        if ( coin < 0){
-            coin = 0;
+    public void RemoveMoney(String player, double money){
+        money = this.getMoney(player) - money;
+        if ( money < 0){
+            money = 0;
         }
-        config.set(player, coin);
+        config.set(player, money);
         config.save();
     }
 

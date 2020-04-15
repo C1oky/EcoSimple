@@ -27,7 +27,7 @@ public class SetMoney extends Command {
                 if (args.length == 1) {
                     Double money = Double.valueOf(args[0]);
                     moneys.setMoney(sender.getName(), money.intValue());
-                    sender.sendMessage("§l[§r§c!§f§l]§ryou gave yourself" + money.intValue() + " \uE102");
+                    sender.sendMessage("§l[§r§c!§f§l]§ryou set the money of" + money.intValue() + " \uE102 "+"to yourself");
                     return false;
                 }
             }
@@ -39,9 +39,8 @@ public class SetMoney extends Command {
                 }
                 Double money = Double.valueOf(args[1]);
                 moneys.setMoney(player.getName(), money.intValue());
-                sender.sendMessage("§l[§r§c!§f§l]§ryou gave "+ money.intValue() + " \uE102 at "+ player.getName());
+                sender.sendMessage("§l[§r§c!§f§l]§ryou set the money of "+ money.intValue() + " \uE102 at "+ player.getName());
             }
-
         }else {
             sender.sendMessage("§l[§r§c!!!§f§l]§rYou do not have permission to make this command");
         }
