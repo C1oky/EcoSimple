@@ -1,19 +1,15 @@
 package fr.Tarzan;
 
-import cn.nukkit.command.Command;
 import cn.nukkit.command.SimpleCommandMap;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.Config;
 import fr.Tarzan.API.MoneyAPI;
-import fr.Tarzan.Command.GiveMoney;
-import fr.Tarzan.Command.Money;
-import fr.Tarzan.Command.Pay;
-import fr.Tarzan.Command.SetMoney;
+import fr.Tarzan.commands.*;
 
-public class Main extends PluginBase {
+public class Loader extends PluginBase {
 
-    public static Main instance;
-    private final Config  money = new Config("plugins/EcoSimple/data/MoneyData.json",Config.JSON);
+    public static Loader instance;
+    private final Config money = new Config("plugins/EcoSimple/data/MoneyData.json", Config.JSON);
     public static MoneyAPI moneys;
 
     @Override
@@ -31,19 +27,19 @@ public class Main extends PluginBase {
         this.getServer().getLogger().info("EcoSimple is Disable");
     }
 
-    private void registerCommand(){
+    private void registerCommand() {
         SimpleCommandMap command = this.getServer().getCommandMap();
-        command.register("givemoney",new GiveMoney());
-        command.register("setmoney", new SetMoney());
-        command.register("money",new Money());
-        command.register("pay",new Pay());
+        command.register("givemoney", new GiveMoneyCommand());
+        command.register("setmoney", new SetMoneyCommand());
+        command.register("money", new MyMoneyCommand());
+        command.register("pay", new PayCommand());
     }
 
-    public static Main getInstance(){
+    public static Loader getInstance() {
         return instance;
     }
 
-    public static MoneyAPI getMoneyAPI(){
+    public static MoneyAPI getMoneyAPI() {
         return moneys;
     }
 }

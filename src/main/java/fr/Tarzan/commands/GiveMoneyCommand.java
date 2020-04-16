@@ -1,16 +1,16 @@
-package fr.Tarzan.Command;
+package fr.Tarzan.commands;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import fr.Tarzan.API.MoneyAPI;
-import fr.Tarzan.Main;
+import fr.Tarzan.Loader;
 
-public class GiveMoney extends Command {
-    private static final Main instance = Main.getInstance();
-    private static final MoneyAPI moneys = Main.getMoneyAPI();
+public class GiveMoneyCommand extends Command {
+    private static final Loader instance = Loader.getInstance();
+    private static final MoneyAPI moneys = Loader.getMoneyAPI();
 
-    public GiveMoney() {
+    public GiveMoneyCommand() {
         super("givemoney", "allows you to give money");
         this.setPermission("eco.perm");
     }
@@ -50,4 +50,3 @@ public class GiveMoney extends Command {
         return true;
     }
 }
-
