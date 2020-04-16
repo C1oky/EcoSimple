@@ -1,4 +1,4 @@
-package fr.Tarzan.API;
+package fr.Tarzan.components;
 
 import cn.nukkit.utils.Config;
 import fr.Tarzan.Loader;
@@ -31,12 +31,16 @@ public class MoneyAPI {
         config.save();
     }
 
-    public void RemoveMoney(String player, double money) {
+    public void removeMoney(String player, double money) {
         money = this.getMoney(player) - money;
         if (money < 0) {
             money = 0;
         }
         config.set(player, money);
+        config.save();
+    }
+
+    public static void saveAll() {
         config.save();
     }
 }

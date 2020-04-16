@@ -3,7 +3,7 @@ package fr.Tarzan.commands;
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
-import fr.Tarzan.API.MoneyAPI;
+import fr.Tarzan.components.MoneyAPI;
 import fr.Tarzan.Loader;
 
 public class PayCommand extends Command {
@@ -37,7 +37,7 @@ public class PayCommand extends Command {
                 return false;
             }
             if (moneys.getMoney(sender.getName()) >= money.intValue()) {
-                moneys.RemoveMoney(sender.getName(), money.intValue());
+                moneys.removeMoney(sender.getName(), money.intValue());
                 moneys.addMoney(player.getName(), money.intValue());
                 player.sendMessage("you've been paid " + money.intValue() + " \uE102 a " + sender.getName());
                 sender.sendMessage("§l[§r§c!§f§l]§ryou paid " + money.intValue() + " \uE102 at " + player.getName());

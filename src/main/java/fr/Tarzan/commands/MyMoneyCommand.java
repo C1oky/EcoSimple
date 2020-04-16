@@ -2,7 +2,7 @@ package fr.Tarzan.commands;
 
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
-import fr.Tarzan.API.MoneyAPI;
+import fr.Tarzan.components.MoneyAPI;
 import fr.Tarzan.Loader;
 
 public class MyMoneyCommand extends Command {
