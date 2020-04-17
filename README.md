@@ -4,13 +4,7 @@
 ### Data
  - plugins/EcoSimple/data/MoneyData.json
  
-### Commands:
- - /givemoney - Payment of the money
- - /setmoney - Set balance
- - /money - View balance
- - /pay - Transfer of money
- 
-### Permissions:
+## Commands & Permissions:
 |Command   | Permissions         | Default|Description                              |
 |:--------:|:-------------------:|:------:|:---------------------------------------:|
 |/setmoney | eco.command.setmoney|op      | Set the player a certain balance        |
