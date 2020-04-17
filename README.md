@@ -11,4 +11,5 @@
 |/givemoney|eco.command.givemoney|op      | Give a player a certain amount of money |
 |/memoney  | eco.command.balance |true    | View balance                            |
 |/pay      | eco.command.pay     |true    | Transferring money to another player    |
+|/topmoney | eco.command.topmoney|true    | View Top Player Money(In Dev)           |
 
