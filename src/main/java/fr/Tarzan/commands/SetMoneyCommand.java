@@ -1,25 +1,26 @@
-package fr.Tarzan.Command;
+package fr.Tarzan.commands;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
-import fr.Tarzan.API.MoneyAPI;
-import fr.Tarzan.Main;
+import fr.Tarzan.components.MoneyAPI;
+import fr.Tarzan.Loader;
 
-public class SetMoney extends Command {
-    private static Main instance = Main.getInstance();
+public class SetMoneyCommand extends Command {
 
-    private static MoneyAPI moneys = Main.getMoneyAPI();
+    private static Loader instance = Loader.getInstance();
+    private static MoneyAPI moneys = Loader.getMoneyAPI();
 
-    public SetMoney() {
-        super("setmoney","allows you to bring the economy up to the number you've set.");
+    public SetMoneyCommand() {
+        super("setmoney", "allows you to bring the economy up to the number you've set.");
     }
+
     @Override
     public boolean execute(CommandSender sender, String s, String[] args) {
 
-        if (sender.hasPermission("eco.perm")){
+        if (sender.hasPermission("eco.perm")) {
 
-            if (args.length == 0 ){
+            if (args.length == 0) {
                 sender.sendMessage("§l[§r§c!!!§f§l]§rYou have to do /setmoney [amount] / [name] [amount]");
                 return false;
             }
@@ -27,11 +28,11 @@ public class SetMoney extends Command {
                 if (args.length == 1) {
                     Double money = Double.valueOf(args[0]);
                     moneys.setMoney(sender.getName(), money.intValue());
-                    sender.sendMessage("§l[§r§c!§f§l]§ryou set the money of" + money.intValue() + " \uE102 "+"to yourself");
+                    sender.sendMessage("§l[§r§c!§f§l]§ryou set the money of" + money.intValue() + " \uE102 " + "to yourself");
                     return false;
                 }
             }
-            if (args.length > 1){
+            if (args.length > 1) {
                 Player player = instance.getServer().getPlayer(args[0]);
                 if (player == null) {
                     sender.sendMessage("§l[§r§c!!!§f§l]§rPlayer is not logged in");
@@ -39,9 +40,9 @@ public class SetMoney extends Command {
                 }
                 Double money = Double.valueOf(args[1]);
                 moneys.setMoney(player.getName(), money.intValue());
-                sender.sendMessage("§l[§r§c!§f§l]§ryou set the money of "+ money.intValue() + " \uE102 at "+ player.getName());
+                sender.sendMessage("§l[§r§c!§f§l]§ryou set the money of " + money.intValue() + " \uE102 at " + player.getName());
             }
-        }else {
+        } else {
             sender.sendMessage("§l[§r§c!!!§f§l]§rYou do not have permission to make this command");
         }
         return true;

@@ -10,4 +10,3 @@
  - /setmoney (eco.perm) - Set balance
  - /money - View balance
  - /pay - Transfer of money
- 

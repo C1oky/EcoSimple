@@ -1,0 +1,5 @@
+name: EcoSimple
+main: fr.Tarzan.Loader
+version: "${pom.version}"
+api: "1.0.9"
+author: Dalker(Tarzan), C1oky
