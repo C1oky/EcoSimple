@@ -1,5 +1,23 @@
 name: EcoSimple
 main: fr.Tarzan.Loader
 version: "${pom.version}"
-api: "1.0.9"
-author: Dalker(Tarzan), C1oky
+api: [1.0.9]
+author: Dalker(Tarzan)
+
+authors:
+  - Dalker(Tarzan)
+  - C1oky
+
+permissions:
+  eco.command.setmoney:
+    default: op
+    description: Set the player a certain balance
+  eco.command.givemoney:
+    default: op
+    description: Give a player a certain amount of money
+  eco.command.balance:
+    default: true
+    description: View balance
+  eco.command.pay:
+    default: true
+    description: Transferring money to another player
