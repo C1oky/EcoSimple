@@ -10,3 +10,6 @@
   - /setmoney (eco.perm)
   - /money
   - /pay
+ # Crédit
+ - C1oky for multiLanguage Thanks you
+ 
