@@ -21,7 +21,7 @@ public class GiveMoneyCommand extends Command {
                         new CommandParameter("player", CommandParamType.TARGET, true),
                         new CommandParameter("amount", CommandParamType.INT, true)
                 });
-        this.setPermission("eco.perm");
+        this.setPermission("eco.command.givemoney");
     }
 
     @Override
