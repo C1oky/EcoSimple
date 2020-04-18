@@ -12,6 +12,7 @@ public class TopMoneyCommand extends Command {
     //in Dev
     public TopMoneyCommand(){
         super("topmoney", LanguageUtil.translate("command.topmoney.description"));
+        this.setPermission("eco.command.topmoney");
     }
     @Override
     public boolean execute(CommandSender sender, String s, String[] args) {
