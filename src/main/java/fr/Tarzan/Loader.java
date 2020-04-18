@@ -34,6 +34,8 @@ public class Loader extends PluginBase {
                 new MyMoneyCommand(),
                 new PayCommand(),
                 new TopMoneyCommand()
+                new MyMoneyCommand(),
+                new PayCommand()
         ));
     }
 

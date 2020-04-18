@@ -2,7 +2,6 @@ package fr.Tarzan.components;
 
 import cn.nukkit.utils.Config;
 import fr.Tarzan.Loader;
-
 import java.util.Map;
 
 public class MoneyAPI {
@@ -41,6 +40,7 @@ public class MoneyAPI {
         config.set(player, money);
         config.save();
     }
+
 
     public String getFormattedTopMoney(int PlayersCount){
         //not sorted in Dev
