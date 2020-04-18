@@ -1,6 +1,7 @@
-package fr.Tarzan.commands;
+package fr.Tarzan.command;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.data.CommandParamType;
@@ -11,8 +12,7 @@ import fr.Tarzan.Loader;
 
 public class SetMoneyCommand extends Command {
 
-    private static Loader instance = Loader.getInstance();
-    private static MoneyAPI moneys = Loader.getMoneyAPI();
+    private final MoneyAPI api = Loader.getMoneyApi();
 
     public SetMoneyCommand() {
         super("setmoney", LanguageUtil.translate("command.setmoney.description"), "/setmoney [name] [amount]");
@@ -35,7 +35,7 @@ public class SetMoneyCommand extends Command {
             return false;
         }
 
-        Player player = instance.getServer().getPlayer(args[0]);
+        Player player = Server.getInstance().getPlayer(args[0]);
         if (player == null) {
             sender.sendMessage(LanguageUtil.translate("commands.generic.playerNotFount"));
             return false;
@@ -44,7 +44,7 @@ public class SetMoneyCommand extends Command {
         try {
             double money = Double.parseDouble(args[1]);
 
-            moneys.setMoney(player.getName(), money);
+            api.setMoney(player.getName(), money);
             sender.sendMessage(LanguageUtil.translate("command.setmoney.success", player.getName(), money));
         } catch (Exception exception) {
             sender.sendMessage(LanguageUtil.translate("commands.generic.usage", this.usageMessage));

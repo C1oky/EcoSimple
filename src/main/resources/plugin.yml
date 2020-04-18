@@ -20,8 +20,8 @@ permissions:
     default: true
     description: Transferring money to another player
   eco.command.seemoney:
-    default: true
-    description: View balance of another Player
+    default: op
+    description: View another player’s balance
   eco.command.topmoney:
     default: true
-    description: Top Player Money
+    description: View list players with the best balance

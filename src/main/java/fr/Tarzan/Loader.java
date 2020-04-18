@@ -1,29 +1,25 @@
 package fr.Tarzan;
 
 import cn.nukkit.Server;
+import cn.nukkit.event.EventHandler;
+import cn.nukkit.event.Listener;
+import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.plugin.PluginBase;
 import fr.Tarzan.components.MoneyAPI;
-import fr.Tarzan.commands.*;
-import fr.Tarzan.listener.PlayerJoinListener;
+import fr.Tarzan.command.*;
 import java.util.Arrays;
 
-public class Loader extends PluginBase {
+public class Loader extends PluginBase implements Listener {
 
+    private static final MoneyAPI MONEY_API = new MoneyAPI();
     private static Loader instance;
-    private static MoneyAPI moneys = new MoneyAPI();
 
     @Override
     public void onEnable() {
         instance = this;
         this.saveDefaultConfig();
-        this.registerListeners();
         this.registerCommands();
-    }
-
-    private void registerListeners() {
-        Arrays.asList(
-                new PlayerJoinListener()
-        ).forEach(listener -> Server.getInstance().getPluginManager().registerEvents(listener, instance));
+        Server.getInstance().getPluginManager().registerEvents(this, this);
     }
 
     private void registerCommands() {
@@ -32,23 +28,23 @@ public class Loader extends PluginBase {
                 new SetMoneyCommand(),
                 new SeeMoneyCommand(),
                 new MyMoneyCommand(),
-                new PayCommand(),
-                new TopMoneyCommand()
+                new TopMoneyCommand(),
                 new MyMoneyCommand(),
+                new SetLangCommand(),
                 new PayCommand()
         ));
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onJoin(PlayerJoinEvent event) {
+        MONEY_API.createAccount(event.getPlayer());
     }
 
     public static Loader getInstance() {
         return instance;
     }
 
-    public static MoneyAPI getMoneyAPI() {
-        return moneys;
-    }
-
-    @Override
-    public void onDisable() {
-        MoneyAPI.saveAll();
+    public static MoneyAPI getMoneyApi() {
+        return MONEY_API;
     }
 }

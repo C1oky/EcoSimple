@@ -1,4 +1,4 @@
-package fr.Tarzan.commands;
+package fr.Tarzan.command;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
@@ -12,7 +12,7 @@ import fr.Tarzan.Loader;
 
 public class PayCommand extends Command {
 
-    private static final MoneyAPI moneys = Loader.getMoneyAPI();
+    private final MoneyAPI api = Loader.getMoneyApi();
 
     public PayCommand() {
         super("pay", LanguageUtil.translate("command.pay.description"), "/pay [name] [amount]");
@@ -55,9 +55,9 @@ public class PayCommand extends Command {
                 return false;
             }
 
-            if (moneys.getMoney(sender.getName()) >= money) {
-                moneys.removeMoney(sender.getName(), money);
-                moneys.addMoney(target.getName(), money);
+            if (api.getMoney(sender.getName()) >= money) {
+                api.removeMoney(sender.getName(), money);
+                api.addMoney(target.getName(), money);
 
                 sender.sendMessage(LanguageUtil.translate("command.pay.success", target.getName(), money));
                 target.sendMessage(LanguageUtil.translate("command.pay.successTarget", sender.getName(), money));

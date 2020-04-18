@@ -1,6 +1,7 @@
-package fr.Tarzan.commands;
+package fr.Tarzan.command;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.data.CommandParamType;
@@ -11,8 +12,7 @@ import fr.Tarzan.Loader;
 
 public class GiveMoneyCommand extends Command {
 
-    private static final Loader instance = Loader.getInstance();
-    private static final MoneyAPI moneys = Loader.getMoneyAPI();
+    private final MoneyAPI api = Loader.getMoneyApi();
 
     public GiveMoneyCommand() {
         super("givemoney", LanguageUtil.translate("command.givemoney.description"), "/givemoney [name] [amount]");
@@ -35,7 +35,7 @@ public class GiveMoneyCommand extends Command {
             return false;
         }
 
-        Player player = instance.getServer().getPlayer(args[0]);
+        Player player = Server.getInstance().getPlayer(args[0]);
         String playerName = args[0];
         if (player != null) {
             playerName = player.getName();
@@ -43,8 +43,8 @@ public class GiveMoneyCommand extends Command {
 
         try {
             double money = Double.parseDouble(args[1]);
-            moneys.addMoney(playerName, money);
 
+            api.addMoney(playerName, money);
             sender.sendMessage(LanguageUtil.translate("command.givemoney.success", money, playerName));
         } catch (Exception exception) {
             sender.sendMessage(LanguageUtil.translate("commands.generic.usage", this.usageMessage));
