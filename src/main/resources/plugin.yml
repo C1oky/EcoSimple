@@ -22,3 +22,6 @@ permissions:
   eco.command.seemoney:
     default: true
     description: View balance of another Player
+  eco.command.topmoney:
+    default: true
+    description: Top Player Money
