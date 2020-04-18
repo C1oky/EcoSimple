@@ -2,14 +2,16 @@
 
 
 ### Data
- - plugins/EcoSimple/data/MoneyData.json
+ - plugins/EcoSimple/data/money.json
  
 ## Commands & Permissions:
-|Command   | Permissions         | Default|Description                              |
+|Commands  | Permissions         | Default|Description                              |
 |:--------:|:-------------------:|:------:|:---------------------------------------:|
 |/setmoney | eco.command.setmoney|op      | Set the player a certain balance        |
 |/givemoney|eco.command.givemoney|op      | Give a player a certain amount of money |
-|/money  | eco.command.balance |true    | View balance                            |
+|/topmoney | eco.command.topmoney|true    | View list players with the best balance |
+|/seemoney | eco.command.seemoney|op      | View another player’s balance           |
+|/money    | eco.command.balance |true    | View balance                            |
 |/pay      | eco.command.pay     |true    | Transferring money to another player    |
-|/topmoney | eco.command.topmoney|true    | View Top Player Money(In Dev)           |
+|/setlang  | eco.command.setlang |op      | Change language for plugin              |
 

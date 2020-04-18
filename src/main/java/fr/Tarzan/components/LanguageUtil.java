@@ -25,8 +25,8 @@ public class LanguageUtil {
     }
 
     public static String translate(String str, Object... params) {
-        String baseText = get(str);
-        baseText = parseTranslation(baseText != null ? baseText : str);
+        String getter = get(str);
+        String baseText = parseTranslation(getter != null ? getter : str);
 
         for (int i = 0; i < params.length; i++) {
             baseText = baseText.replace("{%" + i + "}", parseTranslation(String.valueOf(params[i])));
@@ -36,8 +36,8 @@ public class LanguageUtil {
     }
 
     public static String translate(String str, String... params) {
-        String baseText = get(str);
-        baseText = parseTranslation(baseText != null ? baseText : str);
+        String getter = get(str);
+        String baseText = parseTranslation(getter != null ? getter : str);
 
         for (int i = 0; i < params.length; i++) {
             baseText = baseText.replace("{%" + i + "}", parseTranslation(params[i]));
@@ -68,7 +68,7 @@ public class LanguageUtil {
             }
 
             return data;
-        } catch (IOException exception) {
+        } catch (Exception exception) {
             Server.getInstance().getLogger().logException(exception);
             return null;
         }
@@ -92,40 +92,36 @@ public class LanguageUtil {
 
     private static String parseTranslation(String text) {
         StringBuilder newString = new StringBuilder();
-        text = String.valueOf(text);
-
         StringBuilder replaceString = null;
 
-        int len = text.length();
+        int length = text.length();
 
-        for (int i = 0; i < len; ++i) {
-            char c = text.charAt(i);
+        for (int i = 0; i < length; ++i) {
+            char charAt = text.charAt(i);
             if (replaceString != null) {
-                if ((c >= 0x30 && c <= 0x39) // 0-9
-                        || (c >= 0x41 && c <= 0x5a) // A-Z
-                        || (c >= 0x61 && c <= 0x7a) || // a-z
-                        c == '.' || c == '-') {
-                    replaceString.append(c);
+                if ((charAt >= 0x30 && charAt <= 0x39) // 0-9
+                        || (charAt >= 0x41 && charAt <= 0x5a) // A-Z
+                        || (charAt >= 0x61 && charAt <= 0x7a) || // a-z
+                        charAt == '.' || charAt == '-') {
+                    replaceString.append(charAt);
                 } else {
-                    String t = internalGet(replaceString.substring(1));
+                    String internalGet = internalGet(replaceString.substring(1));
 
-                    if (t != null) {
-                        newString.append(t);
+                    if (internalGet != null) {
+                        newString.append(internalGet);
                     } else {
                         newString.append(replaceString);
                     }
 
-                    replaceString = null;
-                    if (c == '%') {
-                        replaceString = new StringBuilder(String.valueOf(c));
-                    } else {
-                        newString.append(c);
+                    replaceString = charAt == '%' ? new StringBuilder(String.valueOf(charAt)) : null;
+                    if (replaceString == null) {
+                        newString.append(charAt);
                     }
                 }
-            } else if (c == '%') {
-                replaceString = new StringBuilder(String.valueOf(c));
+            } else if (charAt == '%') {
+                replaceString = new StringBuilder(String.valueOf(charAt));
             } else {
-                newString.append(c);
+                newString.append(charAt);
             }
         }
 
@@ -137,6 +133,7 @@ public class LanguageUtil {
                 newString.append(replaceString);
             }
         }
+
         return newString.toString();
     }
 }

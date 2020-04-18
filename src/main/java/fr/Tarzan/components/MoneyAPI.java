@@ -1,65 +1,85 @@
 package fr.Tarzan.components;
 
+import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.utils.Config;
-import fr.Tarzan.Loader;
-import java.util.Map;
+import fr.Tarzan.event.PlayerCreateAccountEvent;
 
 public class MoneyAPI {
 
-    private static Loader instance = Loader.getInstance();
-    private static final Config config = new Config("plugins/EcoSimple/data/MoneyData.json", Config.JSON);
+    public static String configPath = Server.getInstance().getDataPath() + "plugins/EcoSimple/data/money.json";
+    private static final Config config = new Config(configPath, Config.JSON);
+    private static double defaultMoney = config.getDouble("default", 1000);
+    private static MoneyAPI instance;
 
-    public void setMoney(String player, double money) {
-        if (money < 0) {
-            money = 0;
+    public MoneyAPI() {
+        instance = this;
+    }
+
+    public void createAccount(Player player) {
+        this.createAccount(player, defaultMoney);
+    }
+
+    public void createAccount(Player player, double amount) {
+        String playerName = player.getName().toLowerCase();
+        PlayerCreateAccountEvent createAccountEvent = new PlayerCreateAccountEvent(player, amount);
+        if (!createAccountEvent.isCancelled() && config.exists(playerName)) {
+            double defaultMoney = createAccountEvent.getDefaultMoney();
+            config.set(playerName, defaultMoney < 0 ? 0 : defaultMoney);
         }
-        config.set(player, money);
-        config.save();
     }
 
-    public int getMoney(String player) {
-        if (!config.exists(player)) {
-            return 0;
-        } else {
-            Double money = (double) config.get(player);
-            return money.intValue();
-        }
+    public double getMoney(Player player) {
+        return this.getMoney(player.getName());
     }
 
-    public void addMoney(String player, double money) {
-        money += this.getMoney(player);
-        config.set(player, money);
-        config.save();
+    public double getMoney(String player) {
+        return config.getDouble(player.toLowerCase(), 0);
     }
 
-    public void removeMoney(String player, double money) {
-        money = this.getMoney(player) - money;
-        if (money < 0) {
-            money = 0;
-        }
-        config.set(player, money);
-        config.save();
+    public void setMoney(Player player, double amount) {
+        this.setMoney(player.getName(), amount);
     }
 
-
-    public String getFormattedTopMoney(int PlayersCount){
-        //not sorted in Dev
-        Map<String, Object> top = config.getAll();
-        String formattedTop = "";
-        int viewN = 1;
-        for (Map.Entry<String, Object> moneytop: top.entrySet()) {
-            formattedTop = formattedTop + "§7#" + viewN + " §c" + moneytop.getKey() + " §favec §c" + moneytop.getValue()  + " §f" + "$ \n";
-            viewN++;
-
-            if (viewN == PlayersCount) {
-                return formattedTop;
-            }
-
-        }
-        return formattedTop;
+    public void setMoney(String player, double amount) {
+        config.set(player.toLowerCase(), amount < 0 ? 0 : amount);
+        config.save(true);
     }
 
-    public static void saveAll() {
-        config.save();
+    public void addMoney(Player player, double amount) {
+        this.addMoney(player.getName(), amount);
+    }
+
+    public void addMoney(String player, double amount) {
+        config.set(player, amount + this.getMoney(player));
+        config.save(true);
+    }
+
+    public void removeMoney(Player player, double amount) {
+        this.removeMoney(player.getName(), amount);
+    }
+
+    public void removeMoney(String player, double amount) {
+        amount = this.getMoney(player) - amount;
+        config.set(player.toLowerCase(), amount < 0 ? 0 : amount);
+        config.save(true);
+    }
+
+    public void setDefaultMoney(double amount) {
+        defaultMoney = amount;
+        config.set("default", defaultMoney);
+        config.save(true);
+    }
+
+    public double getDefaultMoney() {
+        return defaultMoney;
+    }
+
+    public String getFormattedTopMoney(int playersCount) {
+        return "";
+    }
+
+    public static MoneyAPI getInstance() {
+        return instance;
     }
 }

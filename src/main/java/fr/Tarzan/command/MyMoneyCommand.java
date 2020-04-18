@@ -1,4 +1,4 @@
-package fr.Tarzan.commands;
+package fr.Tarzan.command;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
@@ -9,7 +9,7 @@ import fr.Tarzan.Loader;
 
 public class MyMoneyCommand extends Command {
 
-    private static MoneyAPI money = Loader.getMoneyAPI();
+    private final MoneyAPI api = Loader.getMoneyApi();
 
     public MyMoneyCommand() {
         super("money", LanguageUtil.translate("command.mymoney.description"), "/money", new String[]{"mymoney", "balance", "bal"});
@@ -27,7 +27,7 @@ public class MyMoneyCommand extends Command {
             return false;
         }
 
-        sender.sendMessage(LanguageUtil.translate("command.mymoney.success", money.getMoney(sender.getName())));
+        sender.sendMessage(LanguageUtil.translate("command.mymoney.success", api.getMoney(sender.getName())));
         return true;
     }
 }

@@ -1,19 +1,19 @@
-package fr.Tarzan.commands;
+package fr.Tarzan.command;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
-import cn.nukkit.command.data.CommandParamType;
-import cn.nukkit.command.data.CommandParameter;
 import fr.Tarzan.Loader;
 import fr.Tarzan.components.LanguageUtil;
 import fr.Tarzan.components.MoneyAPI;
 
 public class SeeMoneyCommand extends Command {
-    private static MoneyAPI moneys = Loader.getMoneyAPI();
-    private static Loader instance = Loader.getInstance();
-    public SeeMoneyCommand(){
-        super("seemoney", LanguageUtil.translate("command.seemoney.description"),"/seemoney [Name]");
+
+    private final MoneyAPI api = Loader.getMoneyApi();
+
+    public SeeMoneyCommand() {
+        super("seemoney", LanguageUtil.translate("command.seemoney.description"), "/seemoney [name]");
         this.setPermission("eco.command.seemoney");
     }
 
@@ -28,20 +28,14 @@ public class SeeMoneyCommand extends Command {
             return false;
         }
 
-        Player player = instance.getServer().getPlayer(args[0]);
+        Player player = Server.getInstance().getPlayer(args[0]);
         String playerName = args[0];
 
         if (player != null) {
             playerName = player.getName();
         }
 
-        try {
-
-            sender.sendMessage(LanguageUtil.translate("command.seemoney.message", moneys.getMoney(playerName), playerName ));
-        } catch (Exception exception) {
-            sender.sendMessage(LanguageUtil.translate("commands.generic.usage", this.usageMessage));
-        }
-
+        sender.sendMessage(LanguageUtil.translate("command.seemoney.message", api.getMoney(playerName), playerName));
         return true;
     }
 }
