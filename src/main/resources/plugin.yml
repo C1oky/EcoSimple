@@ -2,8 +2,6 @@ name: EcoSimple
 main: fr.Tarzan.Loader
 version: "${pom.version}"
 api: [1.0.9]
-author: Dalker(Tarzan)
-
 authors:
   - Dalker(Tarzan)
   - C1oky
@@ -21,3 +19,6 @@ permissions:
   eco.command.pay:
     default: true
     description: Transferring money to another player
+  eco.command.seemoney:
+    default: true
+    description: View balance of another Player
