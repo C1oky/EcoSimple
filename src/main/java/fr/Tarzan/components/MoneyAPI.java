@@ -2,6 +2,7 @@ package fr.Tarzan.components;
 
 import cn.nukkit.utils.Config;
 import fr.Tarzan.Loader;
+import java.util.Map;
 
 public class MoneyAPI {
 
@@ -38,6 +39,24 @@ public class MoneyAPI {
         }
         config.set(player, money);
         config.save();
+    }
+
+
+    public String getFormattedTopMoney(int PlayersCount){
+        //not sorted in Dev
+        Map<String, Object> top = config.getAll();
+        String formattedTop = "";
+        int viewN = 1;
+        for (Map.Entry<String, Object> moneytop: top.entrySet()) {
+            formattedTop = formattedTop + "§7#" + viewN + " §c" + moneytop.getKey() + " §favec §c" + moneytop.getValue()  + " §f" + "$ \n";
+            viewN++;
+
+            if (viewN == PlayersCount) {
+                return formattedTop;
+            }
+
+        }
+        return formattedTop;
     }
 
     public static void saveAll() {

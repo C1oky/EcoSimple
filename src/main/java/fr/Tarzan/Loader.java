@@ -5,7 +5,6 @@ import cn.nukkit.plugin.PluginBase;
 import fr.Tarzan.components.MoneyAPI;
 import fr.Tarzan.commands.*;
 import fr.Tarzan.listener.PlayerJoinListener;
-
 import java.util.Arrays;
 
 public class Loader extends PluginBase {
@@ -31,6 +30,10 @@ public class Loader extends PluginBase {
         Server.getInstance().getCommandMap().registerAll("", Arrays.asList(
                 new GiveMoneyCommand(),
                 new SetMoneyCommand(),
+                new SeeMoneyCommand(),
+                new MyMoneyCommand(),
+                new PayCommand(),
+                new TopMoneyCommand()
                 new MyMoneyCommand(),
                 new PayCommand()
         ));
