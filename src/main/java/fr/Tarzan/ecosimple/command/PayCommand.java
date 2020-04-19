@@ -1,4 +1,4 @@
-package fr.Tarzan.command;
+package fr.Tarzan.ecosimple.command;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
@@ -6,9 +6,9 @@ import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.data.CommandParamType;
 import cn.nukkit.command.data.CommandParameter;
-import fr.Tarzan.components.LanguageUtil;
-import fr.Tarzan.components.MoneyAPI;
-import fr.Tarzan.Loader;
+import fr.Tarzan.ecosimple.components.LanguageUtil;
+import fr.Tarzan.ecosimple.components.MoneyAPI;
+import fr.Tarzan.ecosimple.Loader;
 
 public class PayCommand extends Command {
 

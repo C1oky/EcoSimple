@@ -1,4 +1,4 @@
-package fr.Tarzan.event;
+package fr.Tarzan.ecosimple.event;
 
 import cn.nukkit.Player;
 import cn.nukkit.event.Cancellable;

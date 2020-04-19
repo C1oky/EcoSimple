@@ -1,12 +1,12 @@
-package fr.Tarzan;
+package fr.Tarzan.ecosimple;
 
 import cn.nukkit.Server;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.plugin.PluginBase;
-import fr.Tarzan.components.MoneyAPI;
-import fr.Tarzan.command.*;
+import fr.Tarzan.ecosimple.components.MoneyAPI;
+import fr.Tarzan.ecosimple.command.*;
 import java.util.Arrays;
 
 public class Loader extends PluginBase implements Listener {

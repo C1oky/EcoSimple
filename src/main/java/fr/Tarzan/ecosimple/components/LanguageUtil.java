@@ -1,11 +1,10 @@
-package fr.Tarzan.components;
+package fr.Tarzan.ecosimple.components;
 
 import cn.nukkit.Server;
 import cn.nukkit.utils.Config;
 import cn.nukkit.utils.Utils;
-import fr.Tarzan.Loader;
+import fr.Tarzan.ecosimple.Loader;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;

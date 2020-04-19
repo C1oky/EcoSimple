@@ -1,5 +1,5 @@
 name: EcoSimple
-main: fr.Tarzan.Loader
+main: fr.Tarzan.ecosimple.Loader
 version: "${pom.version}"
 api: [1.0.9]
 authors:
