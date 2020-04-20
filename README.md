@@ -1,4 +1,4 @@
-# EcoSimple
+# EcoSimple [![Build Status](https://travis-ci.com/NukkitX-RU/EcoSimple.svg?branch=master)](https://travis-ci.com/github/NukkitX-RU/EcoSimple) 
 
 
 ### Data

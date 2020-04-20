@@ -1,9 +1,9 @@
-package fr.Tarzan.components;
+package fr.Tarzan.ecosimple.components;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.utils.Config;
-import fr.Tarzan.event.PlayerCreateAccountEvent;
+import fr.Tarzan.ecosimple.event.PlayerCreateAccountEvent;
 
 public class MoneyAPI {
 

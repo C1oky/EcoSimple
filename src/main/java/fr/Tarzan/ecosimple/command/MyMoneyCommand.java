@@ -1,11 +1,11 @@
-package fr.Tarzan.command;
+package fr.Tarzan.ecosimple.command;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
-import fr.Tarzan.components.LanguageUtil;
-import fr.Tarzan.components.MoneyAPI;
-import fr.Tarzan.Loader;
+import fr.Tarzan.ecosimple.components.LanguageUtil;
+import fr.Tarzan.ecosimple.components.MoneyAPI;
+import fr.Tarzan.ecosimple.Loader;
 
 public class MyMoneyCommand extends Command {
 

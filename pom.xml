@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>fr.Tarzan</groupId>
-    <artifactId>EcoSimple</artifactId>
+    <artifactId>ecosimple</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <build>
