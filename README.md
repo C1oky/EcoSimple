@@ -15,3 +15,8 @@
 |/pay      | eco.command.pay     |true    | Transferring money to another player    |
 |/setlang  | eco.command.setlang |op      | Change language for plugin              |
 
+# Crédit
+
+- C1koy
+- FengLiqiu666 for lang Chinise
+
